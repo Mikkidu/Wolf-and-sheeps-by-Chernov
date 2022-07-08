@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    private float speed = 2.0f;
+    float speed = 5.0f;
 
-    private float turnSpeed = 90.0f;
+    float turnSpeed = 90.0f;
 
-    private float horizontalInput;
-    private float forwardInput;
+    float horizontalInput;
+    float forwardInput;
+    public AudioSource[] wolfAttack;
+    float fullTime = 3f;
     void Start()
     {
-      
+
     }
 
     // Update is called once per frame
@@ -20,16 +22,48 @@ public class PlayerControl : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
-        if (forwardInput < 0)
-        {
-            //horizontalInput *= -1;
-        }
         //Move the wolf forward
-        transform.Translate(Vector3.forward*Time.deltaTime*speed*forwardInput);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
         //Rotates the wolf based on horizontal input
-        transform.Rotate(Vector3.up*turnSpeed*horizontalInput*Time.deltaTime);
+        transform.Rotate(Vector3.up * turnSpeed * horizontalInput * Time.deltaTime);
+    }
+    private void OnCollisionEnter(Collision other)
+    {
 
-        
-        //transform.Translate(Vector3.right*Time.deltaTime*turnSpeed*horizontalInput);
+        if (other.collider.name == "Sheep(Clone)")
+        {
+            wolfAttack[0].Play();
+            StartCoroutine(FullBelly(fullTime));
+            
+        }
+    }
+     private IEnumerator FullBelly(float restTime)
+    {
+        for (float i = 0; i < 3; i += 1)
+        {
+            transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f) / 10;
+            yield return new WaitForSeconds(1f / 50f);
+        }
+        for (float i = 0; i < 16; i += 1)
+        {
+            transform.localScale += new Vector3(0.1f, 0.1f, 0.1f) / 10;
+            yield return new WaitForSeconds(1f / 50f);
+        }
+        for (float i = 0; i < 3; i += 1)
+        {
+            transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f) / 10;
+            yield return new WaitForSeconds(1f / 50f);
+        }
+        yield return new WaitForSeconds(restTime);
+        for (float i = 0; i < 5; i += 1)
+        {
+            transform.localScale += new Vector3(0.1f, 0.1f, 0.1f) / 10;
+            yield return new WaitForSeconds(1f / 50f);
+        }
+        for (float i = 0; i < 15; i += 1)
+        {
+            transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f) / 10;
+            yield return new WaitForSeconds(1f / 50f);
+        }
     }
 }
