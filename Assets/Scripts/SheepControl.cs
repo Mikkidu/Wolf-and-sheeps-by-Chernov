@@ -29,6 +29,8 @@ public class SheepControl : MonoBehaviour
     int randomBaa;
     public AudioSource[] fearBaa;
 
+    
+
 
 
 
@@ -55,19 +57,23 @@ public class SheepControl : MonoBehaviour
             alarmFlag = true;
             randomBaa = Random.Range(0, 2);
             fearBaa[randomBaa].Play();
+            GetComponent<Breath>().changeBreathPeriod *= 0.25f;
 
         }
         else if (alarmFlag)
         {
             alarmFlag = false;
+            GetComponent<Breath>().changeBreathPeriod *= 4f;
+
         }
+        
 
         if (!alarmFlag)
         {
             //take a rest
             if (walkFlag)
             {
-                Walk(Quaternion.Euler(Vector3.up * walkDirect), speed * 0.2f);
+                Walk(Quaternion.Euler(Vector3.up * walkDirect), speed * 0.25f);
                 if (counter > walkTime)
                 {
                     walkFlag = false;
@@ -96,7 +102,7 @@ public class SheepControl : MonoBehaviour
     void Walk(Quaternion direct, float walkSpeed)
     {
         transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed);
-        transform.rotation = Quaternion.Slerp(transform.rotation, direct, Time.deltaTime * 2.0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, direct, Time.deltaTime * 4.0f);
     }
 
     

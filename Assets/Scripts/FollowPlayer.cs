@@ -18,5 +18,6 @@ public class FollowPlayer : MonoBehaviour
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation, Time.deltaTime * 10.0f);
         transform.position = player.position;
+        
     }
 }
