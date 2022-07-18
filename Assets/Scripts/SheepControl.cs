@@ -45,6 +45,7 @@ public class SheepControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         whereIsWoolf = transform.position - wolf.position;
         whereIsWoolf.y = 0;
         if (alarmFlag && whereIsWoolf.sqrMagnitude < restDistance)
@@ -102,7 +103,7 @@ public class SheepControl : MonoBehaviour
     void Walk(Quaternion direct, float walkSpeed)
     {
         transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed);
-        transform.rotation = Quaternion.Slerp(transform.rotation, direct, Time.deltaTime * 4.0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, direct, Time.deltaTime * 3.0f);
     }
 
     

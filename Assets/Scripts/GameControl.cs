@@ -5,59 +5,59 @@ using UnityEngine;
 public class GameControl : MonoBehaviour
 {
     public GameObject wolf;
-    bool startTimer = false;
+    bool startGame = false;
     GameObject wordHungry;
-    public AudioSource wolfAttack;
-    Rigidbody[] rbOfChildren;
-    Rigidbody[] symbols;
     float counter = 0;
-    float timeToSelfDestroy = 0.5f;
-
-
+    public GameObject spawnManager;
+    GameObject[] destroyObjects;
+    public GameObject spawnWordHungry;
+    public AudioSource wolfAttack;
+    public GameObject menu;
+    public GameObject gameInter;
     
-    // Start is called before the first frame update
     void Start()
     {
-        wordHungry = GameObject.Find("Hungry");
+        SpawnAll();
     }
-
-    // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKey("space") && !startTimer)
+        //Start game and destroy Start Menu
+        if (Input.GetKeyDown("space") && !startGame)
         {
-            rbOfChildren = wordHungry.GetComponentsInChildren<Rigidbody>();
-
-            symbols[0].gameObject.GetComponentInChildren<Rigidbody>();
-            for (int j = 0; j < symbols.Length; j++) //не нужен второй перебор . в первом вызываются все дети с Rigidbody!
-            {
-                for (int i = 0; i < symbols[j].gameObject.GetComponentInChildren<Rigidbody>().Length; i++) 
-                {                    
-                    rbOfChildren[i].isKinematic = false;
-                    rbOfChildren[i].AddExplosionForce(500f, Vector3.up * 4, 3f , 3f);
-
-                }
-            }
-            Debug.Log(symbols.Length);
-            startTimer = true;
-            wolf.gameObject.GetComponent<PlayerControl>().enabled = true;
+            GameObject.Find("Hungry(Clone)").GetComponent<DestroyWord>().enabled = true;
+            startGame = true;
+            wolf.GetComponent<PlayerControl>().enabled = true;
             wolfAttack.Play();
+            menu.SetActive()
         }
-        else if (startTimer)
+        else if (startGame)
         {
-            counter += Time.deltaTime;
-            // if (counter > timeToSelfDestroy)
-            // {
-            //     startTimer = false;
-            //     counter = 0;
-            //     foreach (Transform child in transform)
-            //     {
-            //         child.gameObject.GetComponent<Collider>().enabled = false;
-            //     }
-            // }
-        }
-       
+           
+        }   
+        //Restart if push "r"
+        if (Input.GetKeyDown("r"))
+        {
+            DestroyAll();
+            SpawnAll();
+            wolf.GetComponent<PlayerControl>().enabled = false;
+            wolf.transform.position = Vector3.up * 0.5f;
+            wolf.transform.rotation = new Quaternion(0, 0, 0, 1);
+            counter = 0;        
+            startGame = false;
+        }    
     }
 
+    void DestroyAll()
+    {
+        destroyObjects = GameObject.FindGameObjectsWithTag("DestroyRestart");
+        foreach (GameObject objects in destroyObjects)
+        {
+            Destroy(objects);
+        }
+    }
+    void SpawnAll()
+    {
+        Instantiate(spawnManager, Vector3.zero, spawnManager.transform.rotation);
+        Instantiate(spawnWordHungry, spawnWordHungry.transform.position, spawnWordHungry.transform.rotation);
+    }
 }

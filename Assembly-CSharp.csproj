@@ -41,6 +41,7 @@
      <Compile Include="Assets\Scripts\Breath.cs" />
      <Compile Include="Assets\Scripts\SheepControl.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
+     <Compile Include="Assets\Scripts\DestroyWord.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\FollowPlayer.cs" />
     <Reference Include="UnityEngine">

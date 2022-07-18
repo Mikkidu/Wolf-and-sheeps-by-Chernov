@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 9008639159533663222}
   m_Layer: 0
   m_Name: Sheep
-  m_TagString: Sheeps
+  m_TagString: DestroyRestart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1feab4b4d2702c1409d257717d86adb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeBreathPeriod: 0
   breathPeriod: 3
 --- !u!1 &2491872502129060973
 GameObject:

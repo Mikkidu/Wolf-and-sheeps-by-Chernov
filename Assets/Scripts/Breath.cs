@@ -22,7 +22,7 @@ public class Breath : MonoBehaviour
     {
        
 
-        transform.localScale = startScale * (1 + 0.05f * Mathf.Sin(2 * Mathf.PI * timeCounter / breathPeriod));
+        transform.localScale += startScale * 0.0005f * Mathf.Sin(2 * Mathf.PI * timeCounter / breathPeriod);
         timeCounter += Time.deltaTime;
         if (timeCounter >= breathPeriod)
         {

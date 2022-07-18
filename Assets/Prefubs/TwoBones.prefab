@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2641198915300090490}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TwoBones
-  m_TagString: Untagged
+  m_TagString: Bones
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,9 +40,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2641198915300090490}
     m_Modifications:
+    - target: {fileID: 133374137435271666, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677047425015764860, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677047425265004364, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677047425734639253, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6677047426143762810, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
       propertyPath: m_Name
       value: Bone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677047426143762810, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6677047426143762812, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
       propertyPath: m_Mass
@@ -106,9 +126,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2641198915300090490}
     m_Modifications:
+    - target: {fileID: 133374137435271666, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677047425015764860, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677047425265004364, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677047425734639253, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6677047426143762810, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
       propertyPath: m_Name
       value: Bone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677047426143762810, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6677047426143762812, guid: 43c7f1cb1f9221c438b03642bfc6933b, type: 3}
       propertyPath: m_Mass
