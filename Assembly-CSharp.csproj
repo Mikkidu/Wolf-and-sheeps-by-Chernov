@@ -37,7 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\SpawnManager.cs" />
-     <Compile Include="Assets\Scripts\DestroyWords.cs" />
      <Compile Include="Assets\Scripts\Breath.cs" />
      <Compile Include="Assets\Scripts\SheepControl.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />

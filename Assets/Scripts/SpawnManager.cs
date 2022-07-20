@@ -6,14 +6,11 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject sheep;
    
-    Vector3 spawnPos;
-
-    Vector3 sizeCol = Vector3.one * 2;
+    Vector3 spawnPos, sizeCol = Vector3.one * 2;
     float centerHeight = 0.25f;
     Collider[] colliders;
     bool check = true;
-    int numSheep = 21;
-    int endWhile;
+    int numSheep = 21, endWhile;
     
 
     // Start is called before the first frame update
@@ -33,17 +30,13 @@ public class SpawnManager : MonoBehaviour
             Instantiate(sheep, spawnPos, sheep.transform.rotation);
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
         
     }
-
     bool CheckSpawnPos(Vector3 pos)
     {
         colliders = Physics.OverlapBox(spawnPos, sizeCol);
-        //Debug.Log("pos: " + pos + "/n coll" + colliders.Length);
         if (colliders.Length > 1)
         {
             return true;

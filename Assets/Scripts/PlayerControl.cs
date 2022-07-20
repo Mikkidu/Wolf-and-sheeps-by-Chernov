@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    float speed = 2.0f;
-    float turnSpeed = 90.0f;
-    float horizontalInput;
-    float forwardInput;
+    float speed = 2.0f, turnSpeed = 90.0f, horizontalInput, forwardInput;
     public AudioSource wolfAttack;
     float fullTime = 3f;
     public AudioSource[] wolfBurp;
     int randomSound;
     public GameObject bone;
+    //Time for scale
     float timeStep = 0.02f;
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
@@ -29,16 +26,16 @@ public class PlayerControl : MonoBehaviour
         //Rotates the wolf based on horizontal input
         transform.Rotate(Vector3.up * turnSpeed * horizontalInput * Time.deltaTime);
     }
+    //Eat sheep
     void OnCollisionEnter(Collision other)
     {
-
         if (other.collider.name == "Sheep(Clone)")
         {
             wolfAttack.Play();
             StartCoroutine(FullBelly(fullTime));        
         }
     }
-    
+    //Change size and purb bones
      private IEnumerator FullBelly(float restTime)
     {
         

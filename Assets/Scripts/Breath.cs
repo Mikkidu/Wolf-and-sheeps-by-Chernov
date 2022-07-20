@@ -10,14 +10,14 @@ public class Breath : MonoBehaviour
     Vector3 startScale;
 
 
-    // Start is called before the first frame update
+
     void Start()
     {
         startScale = transform.localScale;
         changeBreathPeriod = breathPeriod;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
        
@@ -31,16 +31,4 @@ public class Breath : MonoBehaviour
         }
         
     }
-    // private IEnumerator Breathing()
-    // {
-    //     Vector3 reScale = Vector3.one * 0.003f;
-    //     while(true)
-    //     {
-    //         for (float i = 0; i < breathPeriod + 1; i += 1)
-    //         {
-    //             transform.localScale += reScale * Mathf.Sin(2 * Mathf.PI * i / breathPeriod);
-    //             yield return new WaitForSeconds(1f / 25f);
-    //         }            
-    //     } 
-    // }
 }

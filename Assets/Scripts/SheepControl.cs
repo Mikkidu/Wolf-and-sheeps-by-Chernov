@@ -6,36 +6,13 @@ public class SheepControl : MonoBehaviour
 {
     Transform wolf;
     float speed = 2f;
-
-    float alarmDistance = 2.5f;
-
-    float restDistance = 4f;
-
+    float alarmDistance = 2f, restDistance = 4f;
     Vector3 whereIsWoolf;
-
-    bool alarmFlag = false;
-
-    float walkDirect;
-
-    float walkTime = 3f;
-    float stayTime = 2f;
-
-    bool walkFlag = false;
-
+    bool alarmFlag = false, walkFlag = false;
+    float walkDirect, walkTime = 3f, stayTime = 2f;
     float counter = 0f;
-
-    public AudioSource[] chillBaa;
-
+    public AudioSource[] chillBaa, fearBaa;
     int randomBaa;
-    public AudioSource[] fearBaa;
-
-    
-
-
-
-
-
-
     void Start()
     {
         stayTime = Random.Range(0, stayTime);
@@ -51,7 +28,6 @@ public class SheepControl : MonoBehaviour
         if (alarmFlag && whereIsWoolf.sqrMagnitude < restDistance)
         {
             Walk(Quaternion.LookRotation(whereIsWoolf, Vector3.up), speed);
-
         }
         else if (whereIsWoolf.sqrMagnitude < alarmDistance)
         {

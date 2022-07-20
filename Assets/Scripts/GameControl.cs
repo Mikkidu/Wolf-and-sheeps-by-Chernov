@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour
 {
-    public GameObject wolf;
+    public GameObject wolf, spawnManager, spawnWordHungry;
     bool startGame = false;
-    GameObject wordHungry;
-    float counter = 0;
-    public GameObject spawnManager;
+    float counter, timer = 150;
     GameObject[] destroyObjects;
-    public GameObject spawnWordHungry;
     public AudioSource wolfAttack;
     public GameObject menu;
-    public GameObject gameInter;
+    public Text timeLeft, sheepsLeft, bestScore, finalLeft;
+    int numberSheeps, bestSheepLeft;
     
     void Start()
     {
         SpawnAll();
+        counter = timer;
+        sheepsLeft.enabled = false;
+        timeLeft.enabled = false;
+        finalLeft.enabled = false;
     }
     void Update()
     {
@@ -28,7 +31,9 @@ public class GameControl : MonoBehaviour
             startGame = true;
             wolf.GetComponent<PlayerControl>().enabled = true;
             wolfAttack.Play();
-            menu.SetActive()
+            menu.SetActive(false);
+            sheepsLeft.enabled = true;
+            timeLeft.enabled = true;
         }
         else if (startGame)
         {
@@ -42,11 +47,31 @@ public class GameControl : MonoBehaviour
             wolf.GetComponent<PlayerControl>().enabled = false;
             wolf.transform.position = Vector3.up * 0.5f;
             wolf.transform.rotation = new Quaternion(0, 0, 0, 1);
-            counter = 0;        
+            counter = 120f;        
             startGame = false;
+            menu.SetActive(true);
+            sheepsLeft.enabled = false;
+            timeLeft.enabled = false;
+            finalLeft.enabled = false;
+        }
+        //Time and score
+        if (startGame && counter > 0)
+        {
+            counter -= Time.deltaTime;
+            timeLeft.text = Mathf.Round(counter).ToString();
+            numberSheeps = GameObject.FindGameObjectsWithTag("Sheeps").Length;
+            sheepsLeft.text = string.Format("Sheeps left - {0}", numberSheeps);
+        }
+        else if (counter <= 0) //Time is over
+        {
+            bestScore.text = string.Format("Best score - {0}", numberSheeps);
+            finalLeft.text = string.Format("Final left - {0}!", numberSheeps);
+            wolf.GetComponent<PlayerControl>().enabled = false;
+            startGame = false;
+            finalLeft.enabled = true;
         }    
     }
-
+    //Destroy all spawned objectы
     void DestroyAll()
     {
         destroyObjects = GameObject.FindGameObjectsWithTag("DestroyRestart");
@@ -54,7 +79,13 @@ public class GameControl : MonoBehaviour
         {
             Destroy(objects);
         }
+        destroyObjects = GameObject.FindGameObjectsWithTag("Sheeps");
+        foreach (GameObject objects in destroyObjects)
+        {
+            Destroy(objects);
+        }
     }
+    //Spawn "Hungry?" and Sheeps
     void SpawnAll()
     {
         Instantiate(spawnManager, Vector3.zero, spawnManager.transform.rotation);

@@ -10,7 +10,7 @@ public class DestroyWord : MonoBehaviour
     Collider[] collOfChildren;
 
 
-    // Start is called before the first frame update
+ 
     void Start()
     {
         rbOfChildren = gameObject.GetComponentsInChildren<Rigidbody>();
@@ -21,7 +21,7 @@ public class DestroyWord : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         counter += Time.deltaTime;
